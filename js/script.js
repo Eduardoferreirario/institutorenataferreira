@@ -1,0 +1,5 @@
+const inauguration=new Date('2026-10-15T19:00:00-03:00').getTime();
+const $=id=>document.getElementById(id);
+function updateCountdown(){const diff=inauguration-Date.now();if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>$(id).textContent='00');return}$('days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');$('hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');$('minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');$('seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0')}
+updateCountdown();setInterval(updateCountdown,1000);$('year').textContent=new Date().getFullYear();
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));document.querySelector('.announcement-close').addEventListener('click',()=>document.getElementById('announcement').remove());
